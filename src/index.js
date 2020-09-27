@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 import { Auth0Provider } from "@auth0/auth0-react";
 import * as serviceWorker from './serviceWorker';
 import keys from './keys/keys'
+import Root from './root';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,7 @@ ReactDOM.render(
     redirectUri = {
         window.location.origin
       } >
-      <App />
+      <Root />
     </ Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')
