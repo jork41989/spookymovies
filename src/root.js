@@ -12,23 +12,20 @@ import keys from './keys/keys'
 
 
 const Root = ({ store }) => (
-  <React.StrictMode>
-     <Provider store={store}>
-    < Auth0Provider
-    domain = {keys.domain}
-    clientId = {keys.clientId}
-    redirectUri = {
-        window.location.origin
-      } >
-         
-            <HashRouter>
-                <App />
-            </HashRouter>
-          
-        </ Auth0Provider>
-        < Provider / >
-  </React.StrictMode>, document.getElementById('root')
-
+    <Provider store={store}>
+        < Auth0Provider
+          domain = {keys.domain}
+          clientId = {keys.clientId}
+          redirectUri = {
+              window.location.origin
+            } >
+              <HashRouter>
+                  <App />
+              </HashRouter>
+      </ Auth0Provider> 
+    </Provider>
 );
 
+
 export default Root;
+
