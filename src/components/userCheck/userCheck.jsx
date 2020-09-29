@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { login } from '../../actions/session_actions';
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from 'axios';
+import { connect } from "react-redux";
 
-export default function UserCheck() {
+
+const UserCheck = (state) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   let setUser = function(){
     if (isAuthenticated){
-      let userInfo = {username: user.usernam, email: user.email}
-      axios.patch(`https://spookyback-opei2xav6q-ue.a.run.app/api/users/login/`, userInfo)
-        .then(user => console.log(user))
+      let userInfo = {email: user.email, username: user.username}
+      state.login(userInfo)
+      console.log(state)
     }
   }
 
@@ -20,3 +22,14 @@ export default function UserCheck() {
   )
 
 }
+
+const msp = state => ({
+  user: state.user,
+  token: state.token
+})
+
+const mdp = dispatch => ({
+  login: payload => dispatch(login(payload))
+})
+
+export default connect(msp, mdp)(UserCheck)
