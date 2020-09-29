@@ -7,7 +7,6 @@ import './index.css';
 import {
   Auth0Provider
 } from "@auth0/auth0-react";
-import * as serviceWorker from './serviceWorker';
 import keys from './keys/keys'
 
 
