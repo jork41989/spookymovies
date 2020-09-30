@@ -5,7 +5,7 @@ import configureStore from './store/store';
 import jwt_decode from 'jwt-decode';
 import {
   setAuthToken
-} from './util/session_api_util';
+} from './util/baseurl';
 import {
   logout
 } from './actions/session_actions';
@@ -17,7 +17,10 @@ import axios from 'axios';
 
 document.addEventListener('DOMContentLoaded', () => {
       let store;
-      if (localStorage.jwtToken) {
+      debugger
+      if (localStorage.jwtToken === "undefined") {
+        store = configureStore({});
+      } else if (localStorage.jwtToken) {
         setAuthToken(localStorage.jwtToken);
         const decodedUser = jwt_decode(localStorage.jwtToken);
         const preloadedState = {
@@ -34,15 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
           store.dispatch(logout());
           window.location.href = '/';
         }
-      } else {
-        store = configureStore({});
-      }
+      } 
       const root = document.getElementById('root');
       //test
       window.axios = axios
       //test
-      ReactDOM.render( < Root store = {
-          store
-        }
+      ReactDOM.render( < Root store = {store}
         />, root);
       });

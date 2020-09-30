@@ -8,9 +8,8 @@ const UserCheck = (state) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   let setUser = function(){
     if (isAuthenticated){
-      let userInfo = {email: user.email, username: user.username}
+      let userInfo = { email: user.email, username: user.nickname}
       state.login(userInfo)
-      console.log(state)
     }
   }
 

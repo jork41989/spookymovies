@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+  frontend:
+    image: jork41989/spookyfront
+    build: .
+    ports: 
+      - 3000:3000
+
