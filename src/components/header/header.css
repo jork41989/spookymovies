@@ -2,3 +2,8 @@
   min-height: 50px;
   background-color: gray;
 }
+
+.headerAuth{
+  display: flex;
+  flex-direction: row;
+}

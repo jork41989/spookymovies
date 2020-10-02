@@ -15,14 +15,11 @@ export default function Homepage() {
         return (
           <div>
             <h3>{user.name}</h3>
-            <UserCheck/>
-            <LogoutButton />
           </div>
         )
       } else {
         return (
           <div>
-            <UserCheck />
             <Login />
           </div>
         )
