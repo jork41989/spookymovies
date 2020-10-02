@@ -17,8 +17,8 @@ import axios from 'axios';
 
 document.addEventListener('DOMContentLoaded', () => {
       let store;
-      debugger
       if (localStorage.jwtToken === "undefined") {
+        debugger
         store = configureStore({});
       } else if (localStorage.jwtToken) {
         setAuthToken(localStorage.jwtToken);
@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
             isAuthenticated: true,
             user: decodedUser
           }
-        };
+        }
+  
 
         store = configureStore(preloadedState);
 
@@ -37,7 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
           store.dispatch(logout());
           window.location.href = '/';
         }
-      } 
+      } else {
+        store = configureStore({});
+      }
       const root = document.getElementById('root');
       //test
       window.axios = axios

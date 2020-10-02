@@ -10,21 +10,23 @@ export default function Homepage() {
   
 
   let loginCheck = function () {
-    
-    if (isAuthenticated) {
-      return (
-        <div>
-          <h3>{user.name}</h3>
-          <UserCheck/>
-          <LogoutButton />
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <Login />
-        </div>
-      )
+    while (!isLoading){
+      if (isAuthenticated) {
+        return (
+          <div>
+            <h3>{user.name}</h3>
+            <UserCheck/>
+            <LogoutButton />
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            <UserCheck />
+            <Login />
+          </div>
+        )
+      }
     }
   }
 
