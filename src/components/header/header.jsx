@@ -1,28 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserCheck from "../userCheck/userCheck";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "../logout/logout";
 import Login from "../login/login";
+import AdminCheck from '../adminCheck/adminCheck'
 import './header.css'
+import { connect } from "react-redux";
 
 
-
-export default function HeaderBar(){
+const HeaderBar = (state) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+    
   let loginCheck = function () {
     while (!isLoading) {
       if (isAuthenticated) {
+        console.log(state)
         return (
           <div className={"headerAuth"}>
-            <h3>{user.name}</h3>
-            <UserCheck />
+            <h3>{state.user.username}</h3>
             <LogoutButton />
+            <AdminCheck />
           </div>
         )
       } else {
         return (
           <div className={"headerAuth"}>
-            <UserCheck />
             <Login />
           </div>
         )
@@ -32,7 +34,19 @@ export default function HeaderBar(){
 
   return (
     <div className="headerBar">
+      <UserCheck/>
       {loginCheck()}
     </div>
   )
 }
+
+const msp = state => ({
+  user: state.session.user,
+  token: state.session.token
+})
+
+const mdp = dispatch => ({
+})
+
+
+export default connect(msp, mdp)(HeaderBar)
