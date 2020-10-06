@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import UserCheck from "../userCheck/userCheck";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "../logout/logout";
 import Login from "../login/login";
 import AdminCheck from '../adminCheck/adminCheck'
-import './header.css'
+import './header.css' 
 import { connect } from "react-redux";
 
 
 const HeaderBar = (state) => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const {  isAuthenticated, isLoading } = useAuth0();
     
   let loginCheck = function () {
     while (!isLoading) {
