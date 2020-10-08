@@ -9,8 +9,10 @@
 }
 
 .resultsMain{
-  position: relative;
-  bottom: -7px;
-  overflow: hidden;
-  min-height: 550px;
+  position: absolute;
+  max-height: 250px;
+}
+
+.poster_HL{
+  height: 150px;
 }

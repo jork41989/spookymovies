@@ -7,12 +7,14 @@ import "./movie_form.css"
 
 const MovieForm = (state) => {
   const [results, setResults] = useState([])
-  const [selectedMovie, setSelectedMovie] = useState()
+  const [selectedMovie, setSMovie] = useState({})
+  const [selectedMovieDiv, setMovieDiv] = useState()
   
 
-  let selectAMovie = function (movieID){
-    setSelectedMovie(movieID)
+  let selectAMovie = function (movie){
     document.getElementById("searchBar").value = ""
+    setResults([])
+    setSMovie(movie)
   }
  
 
@@ -24,9 +26,7 @@ const MovieForm = (state) => {
           newResults.push(<MovieSearchResult key={movie} movie={state.moviesearch[movie]} selectAMovie={selectAMovie}/>)
         })
         setResults(newResults)
-        console.log(state.moviesearch)
       } else {
-        console.log(state.moviesearch)
         newResults = []
         setResults(newResults)
       }
@@ -42,10 +42,40 @@ const MovieForm = (state) => {
     }
     
   };
+  let movieDivBuilder = () => {
+    if (Object.keys(selectedMovie).length >= 1){
+      console.log(selectedMovie)
+      setMovieDiv(
+        <div>
+          <img src={selectedMovie.Poster} alt="Poster" className="poster_HL"/>
+          <h3>{selectedMovie.Title}</h3>
+          <p>{selectedMovie.Year}</p>
+          <div>
+            <button>Slasher</button>
+            <button>Monster</button>
+            <button>Comedy</button>
+            <button>Crime</button>
+            <button>Redneck</button>
+            <button>Home Invasion</button>
+            <button>Virus</button>
+            <button>Paranormal</button>
+            <button>Psychological</button>
+            <button>Gore</button>
+            <button>Sci Fi</button>
+            <button>Family</button>
+          </div>
+        </div>
+      )
+    }
+  }
 
   useEffect(()=>{
     resultFinder()
   }, [state.moviesearch])
+
+  useEffect(() => {
+    movieDivBuilder()
+  }, [selectedMovie])
 
   return(
     <div className="modalBody">
@@ -55,7 +85,7 @@ const MovieForm = (state) => {
         {results}
       </div>
       <div>
-        
+        {selectedMovieDiv}
       </div>
     </div>
   )

@@ -4,7 +4,9 @@ import "./movie_search_results.css"
 
 const MovieSearchResults = (state) => {
   let movieinfo = () =>{
-    console.log(state)
+  }
+  let movieButton = () =>{
+    state.selectAMovie(state.movie)
   }
   return (
     <div className="resultMain">
@@ -12,6 +14,7 @@ const MovieSearchResults = (state) => {
       {state.movie.Title}
       ({state.movie.Year})
       {movieinfo()}
+      <button onClick={movieButton}>Select</button>
     </div>
   )
 
