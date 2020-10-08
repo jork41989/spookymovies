@@ -9,7 +9,7 @@ export const setAuthToken = token => {
 };
 
 const mainAxios = axios.create({
-  baseURL: 'https://spookyback-opei2xav6q-ue.a.run.app'
+  baseURL: 'https://spookyback-opei2xav6q-ue.a.run.app',
 });
 
 const movieAxios = axios.create({

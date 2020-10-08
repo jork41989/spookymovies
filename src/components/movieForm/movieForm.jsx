@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
 import {getSearchMovie} from '../../actions/moviedb_actions'
+import MovieInfo from './movieInfo'
 import MovieSearchResult from "../movieSearchResult/movieSearchResult";
 import "./movie_form.css"
+import { addMovie } from "../../actions/movie_actions";
 
 
 const MovieForm = (state) => {
   const [results, setResults] = useState([])
   const [selectedMovie, setSMovie] = useState({})
   const [selectedMovieDiv, setMovieDiv] = useState()
+  const [movieGenre, setGenre] = useState("Choose A Genre")
   
 
   let selectAMovie = function (movie){
@@ -42,40 +45,24 @@ const MovieForm = (state) => {
     }
     
   };
-  let movieDivBuilder = () => {
-    if (Object.keys(selectedMovie).length >= 1){
-      console.log(selectedMovie)
-      setMovieDiv(
-        <div>
-          <img src={selectedMovie.Poster} alt="Poster" className="poster_HL"/>
-          <h3>{selectedMovie.Title}</h3>
-          <p>{selectedMovie.Year}</p>
-          <div>
-            <button>Slasher</button>
-            <button>Monster</button>
-            <button>Comedy</button>
-            <button>Crime</button>
-            <button>Redneck</button>
-            <button>Home Invasion</button>
-            <button>Virus</button>
-            <button>Paranormal</button>
-            <button>Psychological</button>
-            <button>Gore</button>
-            <button>Sci Fi</button>
-            <button>Family</button>
-          </div>
-        </div>
-      )
-    }
+
+  let genrePicker = (e) =>{
+    setGenre(e.target.value)
   }
 
+  let movieAdd = () => {
+    let payload = {}
+    if(selectedMovie && movieGenre){
+      payload = {...selectedMovie, genre: movieGenre}
+      state.addMovie(payload)
+    }
+  }
+  
   useEffect(()=>{
     resultFinder()
   }, [state.moviesearch])
 
-  useEffect(() => {
-    movieDivBuilder()
-  }, [selectedMovie])
+
 
   return(
     <div className="modalBody">
@@ -84,8 +71,24 @@ const MovieForm = (state) => {
       <div className="resultsMain">
         {results}
       </div>
-      <div>
+      <div className="selected_movie_div">
         {selectedMovieDiv}
+        <MovieInfo movie={{...selectedMovie, movieGenre}} />
+        <div className="genre_buttons">
+          <button onClick={genrePicker} value="slasher">Slasher</button>
+          <button onClick={genrePicker} value="monster">Monster</button>
+          <button onClick={genrePicker} value="comedy">Comedy</button>
+          <button onClick={genrePicker} value="crime">Crime</button>
+          <button onClick={genrePicker} value="redneck">Redneck</button>
+          <button onClick={genrePicker} value="home_invasion">Home Invasion</button>
+          <button onClick={genrePicker} value="virus">Virus</button>
+          <button onClick={genrePicker} value="paranormal">Paranormal</button>
+          <button onClick={genrePicker} value="psychological">Psychological</button>
+          <button onClick={genrePicker} value="gore">Gore</button>
+          <button onClick={genrePicker} value="sci_fi">Sci Fi</button>
+          <button onClick={genrePicker} value="family">Family</button>
+        </div>
+        <button onClick={movieAdd}>Add Movie</button>
       </div>
     </div>
   )
@@ -99,7 +102,8 @@ const msp = state => ({
 })
 
 const mdp = dispatch => ({
-  getSearchMovie: payload => dispatch(getSearchMovie(payload))
+  getSearchMovie: payload => dispatch(getSearchMovie(payload)),
+  addMovie: payload => dispatch(addMovie(payload))
 })
 
 

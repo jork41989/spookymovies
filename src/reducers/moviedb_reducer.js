@@ -7,7 +7,6 @@ import {
 const moviesReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
-    let movie;
     let moviesArr;
     let moviesObj;
 

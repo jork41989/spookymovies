@@ -1,19 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "./movie_search_results.css"
 
 const MovieSearchResults = (state) => {
-  let movieinfo = () =>{
+  const [poster, setPoster] = useState()
+  let posterbuilder = () => {
+    if (state.movie.Poster === "N/A") {
+      setPoster(<img src={"/ghost_shocked.svg"} alt="Poster" className="searchPoster" />)
+    } else {
+      setPoster(<img src={state.movie.Poster} alt="Poster" className="searchPoster" />)
+    }
   }
   let movieButton = () =>{
     state.selectAMovie(state.movie)
   }
+  useEffect(() => {
+    posterbuilder()
+  }, [state.movie])
   return (
     <div className="resultMain">
-      <img src={state.movie.Poster} alt="poster" className="searchPoster"/>
-      {state.movie.Title}
-      ({state.movie.Year})
-      {movieinfo()}
+      {poster}
+      <p className="searchTitle">{state.movie.Title}</p>
+      <p>({state.movie.Year})</p>
       <button onClick={movieButton}>Select</button>
     </div>
   )

@@ -5,8 +5,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
 }
 
 .searchPoster{
  width: 50px;
+}
+
+.searchTitle{
+  max-width: 120px;
 }
