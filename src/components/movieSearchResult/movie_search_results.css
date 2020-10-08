@@ -1,0 +1,12 @@
+.resultMain{
+  background-color: orange;
+  color: black;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 80px;
+}
+
+.searchPoster{
+ width: 50px;
+}

@@ -1,0 +1,6 @@
+.ghost{
+  position: absolute;
+  background-image: url(/public/ghost_shocked.svg);
+  width: 300px;
+  height: 300px;
+}

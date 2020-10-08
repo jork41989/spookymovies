@@ -14,7 +14,6 @@ const HeaderBar = (state) => {
   let loginCheck = function () {
     while (!isLoading) {
       if (isAuthenticated) {
-        console.log(state)
         return (
           <div className={"headerAuth"}>
             <h3>{state.user.username}</h3>
@@ -34,6 +33,7 @@ const HeaderBar = (state) => {
 
   return (
     <div className="headerBar">
+      <div>SpookyMovie</div>
       <UserCheck/>
       {loginCheck()}
     </div>

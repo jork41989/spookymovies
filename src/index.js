@@ -18,7 +18,6 @@ import axios from 'axios';
 document.addEventListener('DOMContentLoaded', () => {
       let store;
       if (localStorage.jwtToken === "undefined") {
-        debugger
         store = configureStore({});
       } else if (localStorage.jwtToken) {
         setAuthToken(localStorage.jwtToken);

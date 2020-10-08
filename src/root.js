@@ -7,14 +7,16 @@ import './index.css';
 import {
   Auth0Provider
 } from "@auth0/auth0-react";
-import keys from './keys/keys'
+const ClientID = process.env.CLIENTID || require('./config/keys').clientId;
+const Domain = process.env.DOMAIN || require('./config/keys').domain;
+
 
 
 const Root = ({ store }) => (
     <Provider store={store}>
         < Auth0Provider
-          domain = {keys.domain}
-          clientId = {keys.clientId}
+          domain = {Domain}
+          clientId = {ClientID}
           redirectUri = {
               window.location.origin
             } >

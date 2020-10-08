@@ -1,9 +1,15 @@
 .headerBar{
   min-height: 50px;
   background-color: gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .headerAuth{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }

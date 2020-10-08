@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 
 
 
+
 const UserCheck = (state) => {
   const { user, isAuthenticated, isLoading} = useAuth0();
   useEffect(()=>{
@@ -15,6 +16,14 @@ const UserCheck = (state) => {
     }
   })
   let setUser = function(){
+    if(isLoading){
+      console.log("loading")
+      return (
+        <div>
+          <div className="ghost"></div>
+        </div>
+      )
+    }
   }
   return (
     <div>

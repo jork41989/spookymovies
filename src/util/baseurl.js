@@ -12,8 +12,13 @@ const mainAxios = axios.create({
   baseURL: 'https://spookyback-opei2xav6q-ue.a.run.app'
 });
 
+const movieAxios = axios.create({
+  baseURL: 'http://www.omdbapi.com/'
+})
+
 
 export default setAuthToken;
 export {
-  mainAxios
+  mainAxios,
+  movieAxios
 };
