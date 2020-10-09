@@ -53,7 +53,7 @@ const MovieForm = (state) => {
   let movieAdd = () => {
     let payload = {}
     if(selectedMovie && movieGenre){
-      payload = {...selectedMovie, genre: movieGenre}
+      payload = {...selectedMovie, Genre: movieGenre}
       state.addMovie(payload)
     }
   }

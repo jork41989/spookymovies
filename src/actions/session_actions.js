@@ -32,7 +32,7 @@ export const receiveErrors = errors => ({
 export const login = user => dispatch => {
 
   return (APIUtil.login(user).then(res => {
-    const { token } = res.data; 
+    const token = res.data.token; 
     localStorage.setItem('jwtToken', token); 
     setAuthToken(token);
     const decoded = jwt_decode(token);
